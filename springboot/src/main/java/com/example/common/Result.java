@@ -16,6 +16,7 @@ public class Result {
         Result result = new Result();
         result.setCode("200");
         result.setData(data);
+        result.setMsg("请求成功");
         return result;
     }
 

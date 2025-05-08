@@ -12,14 +12,9 @@ public class WebController {
     @Resource
     AdminService adminService;
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public Result hello() {
         return Result.success("hello world");
     }
 
-    @GetMapping("/admin")
-    public Result admin(String name){
-        String admin = adminService.admin(name);
-        return Result.success(admin);
-    }
 }

@@ -1,8 +1,8 @@
 <script setup>
 import { House, Location } from '@element-plus/icons-vue'
-import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 
-const route = useRoute()
+const router = useRouter()
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const route = useRoute()
             
             <div class="router-search">
                 <span>
-                    首页 / 数据分析
+                    <span @click="router.push('/manager/home')">首页</span>{{ router.currentRoute.value.meta.name }}
                 </span>
             </div>
 
@@ -46,17 +46,16 @@ const route = useRoute()
         <div class="main">
             <!-- 侧边栏区域 start -->
             <div class="sidebar">
-                <el-menu router :default-openeds="['1']" :default-active="route.path">
-                    <el-menu-item index="/home">
-                        <el-icon><House /></el-icon>
-                        <span>首页</span>
+                <el-menu router :default-openeds="['1']" :default-active="router.currentRoute.value.path">
+                    <el-menu-item index="/manager/home">
+                        <span><el-icon><House /></el-icon>首页</span>
                     </el-menu-item>
                     <el-sub-menu index="1">
                         <template #title>
                         <el-icon><location /></el-icon>
-                        <span>数据管理</span>
+                        <span>用户管理</span>
                         </template>
-                        <el-menu-item index="/test">item one</el-menu-item>
+                        <el-menu-item index="/manager/admin"><span>管理员信息</span></el-menu-item>
                     </el-sub-menu>
                 </el-menu>
             </div>
@@ -76,16 +75,18 @@ const route = useRoute()
 
 <style scoped>
 .container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     min-height: 100vh;
-    box-sizing: border-box;
     padding: 10px;
     background-color: #f5f5f5;
 }
 .main {
+    flex: 1;
+    display: flex;
     border-right: 2px solid #ffffff;
     border-radius: 0 0 10px 10px;
-    display: flex;
     padding-top: 5px;
     box-shadow: inset -1px -1px 8px rgba(0,0,0,0.1);
 }
@@ -118,8 +119,12 @@ const route = useRoute()
     border-radius: 50%;
     margin-right: 5px;
 } 
+.router-search span{
+    cursor: pointer;
+}
 .sidebar {
     width: 200px;
+    overflow-x: auto;
 }
 .el-menu {
     background-color: #ffffff;
@@ -146,6 +151,7 @@ const route = useRoute()
 }
 .main-content{
     flex: 1;
+    overflow-x: auto;
     padding: 3px;
 }
 </style>

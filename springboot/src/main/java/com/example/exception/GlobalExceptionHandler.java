@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public Result exception(Exception e) {
         logger.error("系统异常", e);
-        return Result.error("系统异常");
+        return Result.error("系统异常test");
     }
 
     @ExceptionHandler(CustomerException.class)
